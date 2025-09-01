@@ -1,8 +1,3 @@
-// Enhanced UI behavior for CHOPPER ✚
-// Keeps previous logic, adds progress + stepper sync.
-
-// ------- Existing app logic (triage, weather, scoring) -------
-
 // State
 const state = {
   symptoms: new Set(),
