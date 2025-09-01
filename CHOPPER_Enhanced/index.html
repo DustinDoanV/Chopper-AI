@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CHOPPER ✚ — The ultimate self-care helper AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Arimo:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- SVG ICONS -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12h14"/>
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20 21a8 8 0 1 0-16 0"/>
+      <circle cx="12" cy="7" r="4"/>
+    </symbol>
+    <symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/>
+      <circle cx="12" cy="11" r="2.5"/>
+    </symbol>
+    <symbol id="i-steth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M6 3v6a6 6 0 0 0 12 0V3"/>
+      <circle cx="18" cy="17" r="3"/>
+      <path d="M9 17c0 2.2 1.8 4 4 4h1"/>
+    </symbol>
+    <symbol id="i-checks" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 6h8M3 12h8M3 18h8"/>
+      <path d="m15 6 2 2 4-4M15 12l2 2 4-4M15 18l2 2 4-4"/>
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L14.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <path d="M12 9v4M12 17h.01"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 22l7.8-8.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>
+    </symbol>
+  </svg>
+
+  <!-- HERO / BRAND BAR -->
+  <div class="hero-bg" aria-hidden="true"></div>
+  <header class="container header">
+    <div class="brand">
+      <div class="logo">
+        <svg><use href="#i-plus"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>CHOPPER</h1>
+        <div class="tagline">The ultimate self-care helper AI</div>
+        <div class="warning">Warnings: Not a diagnosis</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-copy">
+        <p>Rules‑first triage with weather‑aware tips. Clear actions. Healthcare‑friendly UI.</p>
+        <div class="hero-badges">
+          <span class="badge"><svg class="b-ico"><use href="#i-user"/></svg>PRIVATE</span>
+          <span class="badge"><svg class="b-ico"><use href="#i-steth"/></svg>TRIAGE</span>
+          <span class="badge"><svg class="b-ico"><use href="#i-map-pin"/></svg>WEATHER</span>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-label">SETUP</div>
+        <div class="progress-bar"><div id="progress" style="width:25%"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main">
+    <aside class="sidebar">
+      <ol class="stepper">
+        <li class="active" data-step="1">
+          <span class="dot">1</span>
+          <div class="info"><div class="t">YOUR DETAILS</div><div class="s">Age, gender, vitals</div></div>
+        </li>
+        <li data-step="2">
+          <span class="dot">2</span>
+          <div class="info"><div class="t">YOUR LOCATION & WEATHER</div><div class="s">GPS or type a place</div></div>
+        </li>
+        <li data-step="3">
+          <span class="dot">3</span>
+          <div class="info"><div class="t">YOUR SYMPTOMS</div><div class="s">Grouped by body system</div></div>
+        </li>
+        <li data-step="4">
+          <span class="dot">4</span>
+          <div class="info"><div class="t">RESULT</div><div class="s">Triage & guidance</div></div>
+        </li>
+      </ol>
+    </aside>
+
+    <section class="content">
+      <!-- Tabs (mobile) -->
+      <nav class="steps">
+        <button class="step active" data-step="1"><svg class="ico"><use href="#i-user"/></svg>YOUR DETAILS</button>
+        <button class="step" data-step="2"><svg class="ico"><use href="#i-map-pin"/></svg>YOUR LOCATION & WEATHER</button>
+        <button class="step" data-step="3"><svg class="ico"><use href="#i-steth"/></svg>YOUR SYMPTOMS</button>
+        <button class="step" data-step="4"><svg class="ico"><use href="#i-checks"/></svg>RESULT</button>
+      </nav>
+
+      <!-- STEP 1 -->
+      <section class="card step-page show" id="step-1">
+        <h2>YOUR DETAILS</h2>
+        <div class="grid two">
+          <div class="row">
+            <label>Age</label>
+            <input id="age" type="number" min="0" placeholder="e.g., 21" />
+          </div>
+          <div class="row">
+            <label>Biological gender</label>
+            <div class="choices">
+              <label class="radio"><input type="radio" name="gender" value="male" checked> Male</label>
+              <label class="radio"><input type="radio" name="gender" value="female"> Female</label>
+            </div>
+          </div>
+          <div class="row">
+            <label>Height (cm)</label>
+            <input id="height" type="number" min="0" placeholder="e.g., 170">
+          </div>
+          <div class="row">
+            <label>Weight (kg)</label>
+            <input id="weight" type="number" min="0" placeholder="e.g., 65">
+          </div>
+          <div class="row">
+            <label>Body temperature</label>
+            <div class="choices">
+              <input id="temp" type="number" step="0.1" placeholder="e.g., 38.0">
+              <select id="tempUnit">
+                <option value="C" selected>°C</option>
+                <option value="F">°F</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label>Duration (days)</label>
+            <input id="duration" type="number" min="0" placeholder="e.g., 2">
+          </div>
+          <div class="row full">
+            <label>Chronic conditions (free text)</label>
+            <input id="chronicText" type="text" placeholder="e.g., asthma, diabetes">
+          </div>
+        </div>
+        <div class="pager">
+          <button class="next primary" data-next="2">Next</button>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="card step-page" id="step-2">
+        <h2>YOUR LOCATION & WEATHER</h2>
+        <p class="muted">Use GPS or type your location to fetch weather, air quality, and pollen for the duration you entered.</p>
+        <div class="grid two">
+          <div class="row">
+            <label>GPS</label>
+            <button id="useLocation" class="ghost"><svg class="ico"><use href="#i-map-pin"/></svg>Use my location</button>
+          </div>
+          <div class="row">
+            <label>Type your location</label>
+            <div class="choices">
+              <input id="place" type="text" placeholder="e.g., Melbourne, Australia">
+              <button id="searchPlace" class="ghost">Find</button>
+            </div>
+          </div>
+        </div>
+        <div id="locationStatus" class="muted"></div>
+        <div id="weatherBox" class="weather"></div>
+        <div class="pager">
+          <button class="prev" data-prev="1">Back</button>
+          <button class="next primary" data-next="3">Next</button>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="card step-page" id="step-3">
+        <h2>YOUR SYMPTOMS</h2>
+
+        <div class="group">
+          <h3><span class="group-ico">🧠</span> HEAD‑RELATED</h3>
+          <div class="chips">
+            <button class="chip" data-token="dizziness">Dizziness</button>
+            <button class="chip" data-token="confusion">Confusion</button>
+            <button class="chip" data-token="vision_changes">Vision changes</button>
+            <button class="chip" data-token="light_sound_sensitivity">Sensitivity to light/sound</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3><span class="group-ico">🫁</span> RESPIRATORY</h3>
+          <div class="chips">
+            <div class="inline">
+              <span class="chiplabel">Coughing:</span>
+              <button class="chip" data-token="cough_dry">without mucus</button>
+              <button class="chip" data-token="cough_mucus">with mucus</button>
+              <button class="chip danger" data-token="cough_blood">with blood</button>
+            </div>
+            <button class="chip" data-token="runny_nose">Runny nose</button>
+            <button class="chip" data-token="blocked_nose">Blocked nose</button>
+            <button class="chip" data-token="sore_throat">Sore throat</button>
+            <button class="chip" data-token="shortness_of_breath">Shortness of breath</button>
+            <button class="chip" data-token="nose_bleed">Nose bleed</button>
+            <button class="chip" data-token="chest_pain">Chest pain</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3><span class="group-ico">🧃</span> DIGESTIVE</h3>
+          <div class="chips">
+            <button class="chip" data-token="stomachache">Stomachache</button>
+            <button class="chip" data-token="nausea">Nausea</button>
+            <button class="chip" data-token="diarrhea">Diarrhea</button>
+            <button class="chip" data-token="vomiting">Vomiting</button>
+            <button class="chip" data-token="weight_changes">Weight changes</button>
+            <button class="chip" data-token="difficulty_swallowing">Difficulty swallowing</button>
+            <button class="chip" data-token="constipation">Constipation</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3><span class="group-ico">🦴</span> SKELETAL & MUSCULAR</h3>
+          <div class="chips">
+            <button class="chip" data-token="bone_pain">Bone pain</button>
+            <button class="chip" data-token="joint_pain">Joint pain</button>
+            <button class="chip" data-token="muscle_pain">Muscle pain</button>
+            <button class="chip" data-token="stiffness">Stiffness</button>
+            <button class="chip" data-token="swelling">Swelling</button>
+            <button class="chip" data-token="bruising">Bruising</button>
+            <button class="chip" data-token="mobility_difficulty">Difficulty with mobility</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3><span class="group-ico">⚡</span> NERVOUS SYSTEM</h3>
+          <div class="chips">
+            <button class="chip" data-token="fatigue">Fatigue</button>
+            <button class="chip" data-token="sleepiness">Unexplained sleepiness</button>
+            <button class="chip" data-token="balance_problems">Balance problems</button>
+            <button class="chip" data-token="seizures">Seizures</button>
+            <button class="chip" data-token="headache">Headache</button>
+            <button class="chip" data-token="speech_difficulty">Speech difficulty</button>
+            <button class="chip" data-token="memory_issues">Memory issues</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3><span class="group-ico">🩹</span> SKIN</h3>
+          <div class="chips">
+            <button class="chip" data-token="cuts">Cuts</button>
+            <button class="chip" data-token="wound">Wound</button>
+            <button class="chip" data-token="rash">Rash</button>
+            <button class="chip" data-token="itchy">Itchy</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Free‑text (optional)</label>
+          <textarea id="freeText" rows="3" placeholder="Describe anything else…"></textarea>
+        </div>
+
+        <div class="pager">
+          <button class="prev" data-prev="2">Back</button>
+          <button id="analyze" class="primary">Analyse</button>
+        </div>
+      </section>
+
+      <!-- STEP 4 -->
+      <section class="card step-page" id="step-4">
+        <h2>RESULT</h2>
+        <div id="triageLevel" class="triage"></div>
+        <div id="topConditions"></div>
+        <div id="actionsNow"></div>
+        <div id="monitor"></div>
+        <div id="escalation"></div>
+        <div id="localLinks" class="muted"></div>
+        <div class="pager">
+          <button class="prev" data-prev="3">Back</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="container small muted">
+    <p>© CHOPPER ✚ — For education only. If symptoms are severe, call your local emergency number.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
